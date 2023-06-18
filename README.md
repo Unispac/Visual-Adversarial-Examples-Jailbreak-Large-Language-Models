@@ -1,4 +1,4 @@
-<h1 align='center' style="text-align:center; font-weight:bold; font-size:2.0em;letter-spacing:2.0px;"> Visual Adversarial Examples Jailbreak Large Language Models </h1>
+<h1 align='center' style="text-align:center; font-weight:bold; font-size:2.0em;letter-spacing:2.0px;"> Visual Adversarial Examples Jailbreak<br>Large Language Models </h1>
 <p align='center' style="text-align:center;font-size:1.25em;">
     <a href="https://unispac.github.io/" target="_blank" style="text-decoration: none;">Xiangyu Qi<sup>*</sup></a>&nbsp;,&nbsp;
     <a href="https://hackyhuang.github.io/" target="_blank" style="text-decoration: none;">Kaixuan Huang<sup>*</sup></a>&nbsp;,&nbsp;
