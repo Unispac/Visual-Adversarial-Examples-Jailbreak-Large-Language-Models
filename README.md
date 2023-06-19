@@ -36,9 +36,17 @@ To elucidate these risks, we study adversarial examples in the visual input spac
 
 **A single visual adversarial example can jailbreak MiniGPT-4.** The model refuses harmful textual instructions with high probabilities, given a benign visual input x. But, when prompted with a visual adversarial example x' optimized (epsilon = 16/255) to elicit derogatory outputs against three specific identity groups, the safety mechanisms falter. The model instead obeys harmful instructions and produces hazardous content with high probabilities. Intriguingly, x' also facilitates the generation of offensive content against other social groups and even instructions for murder, which were not explicitly optimized for. (Note: For each question, we've sampled 100 random outputs, calculating the refusal and obedience ratios via manual inspection. A representative, redacted output is showcased for each.)
 
-![](assets/demo.png)
+![](assets/human_race.png)
 
+![](assets/gender.png)
 
+![](assets/race.png)
+
+![](assets/religious-1.png)
+
+![](assets/religious-2.png)
+
+![](assets/crime.png)
 
 In folder `adversarial_images/`, we provide our sample adversarial images under different constraints. Our qualitative results can be verified through the huggingface space https://huggingface.co/spaces/Vision-CAIR/minigpt4.
 
