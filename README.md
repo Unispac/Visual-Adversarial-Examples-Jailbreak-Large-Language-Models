@@ -24,14 +24,14 @@ Princeton University<br/>
 
 
 --------------------------------
-#### Abstract
+### Abstract
 
 Recently, there has been a surge of interest in introducing vision into Large Language Models (LLMs). The proliferation of large Visual Language Models (VLMs), such as [Flamingo](), [BLIP-2](), and [GPT-4](), signifies an exciting convergence of advancements in both visual and language foundation models. Yet, the risks associated with this integrative approach are largely unexamined. In this paper, we shed light on the security and safety implications of this trend. **First**, we underscore that the continuous and high-dimensional nature of the additional visual input space intrinsically makes it a fertile ground for adversarial attacks. This unavoidably *expands the attack surface of LLMs*. **Second**, we highlight that the broad functionality of LLMs also presents visual attackers with a wider array of achievable adversarial objectives, *extending the implications of security failures* beyond mere misclassification. 
 
 To elucidate these risks, we study adversarial examples in the visual input space of a VLM. Specifically, against [MiniGPT-4](), which incorporates safety mechanisms that can refuse harmful instructions, we present **visual adversarial examples** that can circumvent the safety mechanisms and provoke harmful behaviors of the model. Remarkably, we discover that adversarial examples, even if optimized on a narrow, manually curated derogatory corpus against specific social groups, can universally **jailbreak** the model's safety mechanisms. A single such adversarial example can generally undermine MiniGPT-4's safety, enabling it to heed a wide range of harmful instructions and produce harmful content far beyond simply imitating the derogatory corpus used in optimization. Unveiling these risks, we accentuate the urgent need for comprehensive risk assessments, robust defense strategies, and the implementation of responsible practices for the secure and safe utilization of VLMs.
 
 -------
-
+### Examples
 
 
 **A single visual adversarial example can jailbreak MiniGPT-4.** The model refuses harmful textual instructions with high probabilities, given a benign visual input x. But, when prompted with a visual adversarial example x' optimized (epsilon = 16/255) to elicit derogatory outputs against three specific identity groups, the safety mechanisms falter. The model instead obeys harmful instructions and produces hazardous content with high probabilities. Intriguingly, x' also facilitates the generation of offensive content against other social groups and even instructions for murder, which were not explicitly optimized for. (Note: For each question, we've sampled 100 random outputs, calculating the refusal and obedience ratios via manual inspection. A representative, redacted output is showcased for each.)
@@ -48,8 +48,7 @@ To elucidate these risks, we study adversarial examples in the visual input spac
 
 ![](assets/crime.png)
 
-In folder `adversarial_images/`, we provide our sample adversarial images under different constraints. Our qualitative results can be verified through the huggingface space https://huggingface.co/spaces/Vision-CAIR/minigpt4.
+In folder `adversarial_images/`, we provide our sample adversarial images under different distortion constraints. Effectiveness of our adversarial examples can be verified by using the MiniGPT-4 interface running in the huggingface space https://huggingface.co/spaces/Vision-CAIR/minigpt4.
 
 
-
-Code and other materials will be released soon!
+Our code and other materials will be released soon.
