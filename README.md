@@ -18,7 +18,7 @@ Princeton University<br/>
 
 <p align='center' style="text-align:center;font-size:2.5 em;">
 <b>
-    <a href="" target="_blank" style="text-decoration: none;">arXiv</a>&nbsp;
+    <a href="https://arxiv.org/abs/2306.13213" target="_blank" style="text-decoration: none;">arXiv</a>&nbsp;
 </b>
 </p>
 
