@@ -35,7 +35,7 @@ Princeton University<br/>
 
 **Overview: A single visual adversarial example can jailbreak MiniGPT-4.** 
 
-> (Note: For each instruction below, we've sampled 100 random outputs, calculating the refusal and obedience ratios via manual inspection. A representative, redacted output is showcased for each.)
+> Note: 1. For each instruction below, we've sampled 100 random outputs, calculating the refusal and obedience ratios via manual inspection. A representative, redacted output is showcased for each. 2. We use ɛ = 16/255 in the following demo.
 
 ![](assets/human_race.png)
 
