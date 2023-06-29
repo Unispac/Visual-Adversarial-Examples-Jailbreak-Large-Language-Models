@@ -21,9 +21,11 @@ Princeton University<br/>
     <a href="https://arxiv.org/abs/2306.13213" target="_blank" style="text-decoration: none;">arXiv</a>&nbsp;
 </b>
 </p>
+--------------------------------
 **!!! Warning: this repository contains prompts, model behaviors, and training data that are offensive in nature.**
 
---------------------------------
+------------
+
 **Overview: A single visual adversarial example can jailbreak MiniGPT-4.** 
 
 > (Note: For each instruction below, we've sampled 100 random outputs, calculating the refusal and obedience ratios via manual inspection. A representative, redacted output is showcased for each.)
