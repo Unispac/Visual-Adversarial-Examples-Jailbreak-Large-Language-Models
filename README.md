@@ -21,10 +21,13 @@ Princeton University<br/>
     <a href="https://arxiv.org/abs/2306.13213" target="_blank" style="text-decoration: none;">arXiv</a>&nbsp;
 </b>
 </p>
---------------------------------
 
 
-**!!! Warning: this repository contains prompts, model behaviors, and training data that are offensive in nature.**
+------------
+
+
+
+***!!! Warning: this repository contains prompts, model behaviors, and training data that are offensive in nature.***
 
 
 
