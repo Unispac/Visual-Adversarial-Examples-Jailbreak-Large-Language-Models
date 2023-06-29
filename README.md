@@ -48,7 +48,7 @@ Though the scope of the corpus is very narrow, **surprisingly**, a single such a
 
 **Intriguingly, x' also facilitates the generation of offensive content against other social groups (\<religious-group-1\>, \<religious-group-2\>) and even instructions for murder, which were not explicitly optimized for.** 
 
-> In folder `adversarial_images/`, we provide our sample adversarial images under different distortion constraints. Effectiveness of our adversarial examples can be verified by using the MiniGPT-4 interface running in the huggingface space https://huggingface.co/spaces/Vision-CAIR/minigpt4.
+> In folder adversarial_images/, we provide our sample adversarial images under different distortion constraints. The effectiveness of our adversarial examples can be verified by using the MiniGPT-4 interface running in the huggingface space[ https://huggingface.co/spaces/Vision-CAIR/minigpt4](https://huggingface.co/spaces/Vision-CAIR/minigpt4).
 
 ----------
 
@@ -64,7 +64,7 @@ Though the scope of the corpus is very narrow, **surprisingly**, a single such a
 
 We take MiniGPT-4 (13B) as the sandbox to showcase our attacks. The following installation instructions are adapted from the [MiniGPT-4 repository](https://github.com/Vision-CAIR/MiniGPT-4).
 
-**1. Set up the environment **
+**1. Set up the environment**
 
 ```bash
 git clone https://github.com/Unispac/Visual-Adversarial-Examples-Jailbreak-Large-Language-Models.git
@@ -95,7 +95,7 @@ conda activate minigpt4
 
 Generate a visual adversarial example within a distortion constraint of epsilon = 16/255 (similar to the example in our overview demo). The final adversarial examples will be saved to `$save_dir/bad_prompt.bmp`, and we also save intermediate checkpoints every 100 iterations.
 
-The argument can be adjusted (e.g., --eps=32,64,128) to evaluate the effectiveness of the attacks under different distrotion budgets.
+The argument can be adjusted (e.g., --eps=32,64,128) to evaluate the effectiveness of the attacks under different distortion budgets.
 
 ```bash
 python visual_attack.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --n_iters 5000 --constrained --eps 16 --alpha 1 --save_dir visual_constrained_eps_16
@@ -133,13 +133,13 @@ To verify the effectiveness of our adversarial examples:
   python test_manual_prompts_visual_llm.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --image_path  adversarial_images/prompt_unconstrained.bmp
   ```
 
-  The argument `--image_path` can be customized to the path of an any input image.
+  The argument `--image_path` can be customized to the path of any input image.
 
 <br>
 
 ### Generate Textual Adversarial Examples
 
-We also provide codes for optimizing adversarial text tokens w.r.t. the same attack targets of our visual attacks. A running example: 
+We also provide codes for optimizing adversarial text tokens w.r.t. the same attack targets as our visual attacks. A running example: 
 
 ```bash
 python textual_attack.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --n_iters 5000 --n_candidates 50 --save_dir textual_unconstrained
