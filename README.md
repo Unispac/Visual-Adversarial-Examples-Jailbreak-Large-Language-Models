@@ -24,17 +24,9 @@ Princeton University<br/>
 
 
 --------------------------------
-### Abstract
+**Overview: A single visual adversarial example can jailbreak MiniGPT-4.** 
 
-Recently, there has been a surge of interest in introducing vision into Large Language Models (LLMs). The proliferation of large Visual Language Models (VLMs), such as [Flamingo](https://arxiv.org/abs/2204.14198), [BLIP-2](https://arxiv.org/abs/2301.12597), and [GPT-4](https://arxiv.org/abs/2303.08774), signifies an exciting convergence of advancements in both visual and language foundation models. Yet, the risks associated with this integrative approach are largely unexamined. In this paper, we shed light on the security and safety implications of this trend. **First**, we underscore that the continuous and high-dimensional nature of the additional visual input space intrinsically makes it a fertile ground for adversarial attacks. This unavoidably *expands the attack surface of LLMs*. **Second**, we highlight that the broad functionality of LLMs also presents visual attackers with a wider array of achievable adversarial objectives, *extending the implications of security failures* beyond mere misclassification. 
-
-To elucidate these risks, we study adversarial examples in the visual input space of a VLM. Specifically, against [MiniGPT-4](https://minigpt-4.github.io/), which incorporates safety mechanisms that can refuse harmful instructions, we present **visual adversarial examples** that can circumvent the safety mechanisms and provoke harmful behaviors of the model. Remarkably, we discover that adversarial examples, even if optimized on a narrow, manually curated derogatory corpus against specific social groups, can universally **jailbreak** the model's safety mechanisms. A single such adversarial example can generally undermine MiniGPT-4's safety, **enabling it to heed a wide range of harmful instructions and produce harmful content far beyond simply imitating the derogatory corpus used in optimization**. Unveiling these risks, we accentuate the urgent need for comprehensive risk assessments, robust defense strategies, and the implementation of responsible practices for the secure and safe utilization of VLMs.
-
--------
-### Examples
-
-
-**Example: A single visual adversarial example can jailbreak MiniGPT-4.** MiniGPT-4 refuses harmful textual instructions with non-trivially high probabilities, given a benign visual input x. But, when prompted with a visual adversarial example x' optimized (epsilon = 16/255) to elicit derogatory outputs against three specific identity groups (\<gender-1\>, \<race-1\> and the human race), the safety mechanisms falter. The model instead obeys harmful instructions and produces hazardous content with high probabilities. **Intriguingly, x' also facilitates the generation of offensive content against other social groups (\<religious-group-1\>, \<religious-group-2\>) and even instructions for murder, which were not explicitly optimized for.** (Note: For each question, we've sampled 100 random outputs, calculating the refusal and obedience ratios via manual inspection. A representative, redacted output is showcased for each.)
+> (Note: For each instruction below, we've sampled 100 random outputs, calculating the refusal and obedience ratios via manual inspection. A representative, redacted output is showcased for each.)
 
 ![](assets/human_race.png)
 
@@ -42,13 +34,114 @@ To elucidate these risks, we study adversarial examples in the visual input spac
 
 ![](assets/race.png)
 
+MiniGPT-4 can refuse harmful instructions with a non-trivial probability (see the green boxes). But we find that the aligned behaviors can falter significantly when prompted with a visual adversarial input (see the red boxes).
+
+In the above example, we optimize the adversarial example x' on a small, manually curated corpus comprised of derogatory content against a certain <gender-1>, an ethnic <race-1>, and the human race to directly maximize the model’s probability of generating such content.
+
+Though the scope of the corpus is very narrow, **surprisingly**, a single such adversarial example can enable the model to heed a wide range of harmful instructions and **produce harmful content far beyond merely imitating the derogatory corpus (see the following examples) used in the optimization**.
+
 ![](assets/religious-1.png)
 
 ![](assets/religious-2.png)
 
 ![](assets/crime.png)
 
-In folder `adversarial_images/`, we provide our sample adversarial images under different distortion constraints. Effectiveness of our adversarial examples can be verified by using the MiniGPT-4 interface running in the huggingface space https://huggingface.co/spaces/Vision-CAIR/minigpt4.
+**Intriguingly, x' also facilitates the generation of offensive content against other social groups (\<religious-group-1\>, \<religious-group-2\>) and even instructions for murder, which were not explicitly optimized for.** 
 
+> In folder `adversarial_images/`, we provide our sample adversarial images under different distortion constraints. Effectiveness of our adversarial examples can be verified by using the MiniGPT-4 interface running in the huggingface space https://huggingface.co/spaces/Vision-CAIR/minigpt4.
 
-Our code and other materials will be released soon.
+----------
+
+<br>
+
+<br>
+
+# Step-by-Step Instructions for Reimplementing Our Experiments
+
+<br>
+
+### Installation
+
+We take MiniGPT-4 (13B) as the sandbox to showcase our attacks. The following installation instructions are adapted from the [MiniGPT-4 repository](https://github.com/Vision-CAIR/MiniGPT-4).
+
+**1. Set up the environment **
+
+```bash
+git clone https://github.com/Unispac/Visual-Adversarial-Examples-Jailbreak-Large-Language-Models.git
+
+cd Visual-Adversarial-Examples-Jailbreak-Large-Language-Models
+
+conda env create -f environment.yml
+conda activate minigpt4
+```
+
+**2. Prepare the pretrained weights for MiniGPT-4**
+
+> As we directly inherit the MiniGPT-4 code base, the guide from the [MiniGPT-4 repository](https://github.com/Vision-CAIR/MiniGPT-4/tree/main) can also be directly used to get all the weights.
+
+* **Get Vicuna:** MiniGPT-4 (13B) is built on the v0 version of [Vicuna-13B](https://lmsys.org/blog/2023-03-30-vicuna/). Please refer to this [guide](https://github.com/Vision-CAIR/MiniGPT-4/blob/main/PrepareVicuna.md) from the MiniGPT-4 repository to get the weights of Vicuna.
+
+  Then, set the path to the vicuna weight in the model config file [here](https://github.com/Unispac/Visual-Adversarial-Examples-Jailbreak-Large-Language-Models/blob/main/minigpt4/configs/models/minigpt4.yaml#L16) at Line 16.
+
+* **Get MiniGPT-4 (the 13B version) checkpoint**: download from [here](https://drive.google.com/file/d/1a4zLvaiDBr-36pasffmgpvH5P7CKmpze/view?usp=share_link). 
+
+  Then, set the path to the pretrained checkpoint in the evaluation config file in [eval_configs/minigpt4_eval.yaml](https://github.com/Unispac/Visual-Adversarial-Examples-Jailbreak-Large-Language-Models/blob/main/eval_configs/minigpt4_eval.yaml#L11) at Line 11.
+
+<br>
+
+### Generate Visual Adversarial Examples
+
+> Note: a single A100 80G GPU is sufficient to launch the following experiments.
+
+Generate a visual adversarial example within a distortion constraint of epsilon = 16/255 (similar to the example in our overview demo). The final adversarial examples will be saved to `$save_dir/bad_prompt.bmp`, and we also save intermediate checkpoints every 100 iterations.
+
+The argument can be adjusted (e.g., --eps=32,64,128) to evaluate the effectiveness of the attacks under different distrotion budgets.
+
+```bash
+python visual_attack.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --n_iters 5000 --constrained --eps 16 --alpha 1 --save_dir visual_constrained_eps_16
+```
+
+When there is no need for "visual stealthiness", one can use the following command to run unconstrained attacks (the adversarial image can take any values within the legitimate range of pixel values).
+
+```bash
+python visual_attack.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --n_iters 5000  --alpha 1 --save_dir visual_unconstrained
+```
+
+<br>
+
+### Evaluation
+
+In folder `adversarial_images/`, we provide off-the-shelf adversarial images that we generated (under different distortion constraints).
+
+To verify the effectiveness of our adversarial examples:
+
+* Play with the web-based interface of MiniGPT-4:
+
+  * Huggingface Space: https://huggingface.co/spaces/Vision-CAIR/minigpt4
+
+  * Launch a local demo: 
+
+    ```bash
+    python demo.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0
+    ```
+
+* Testing on a diverse set of 40 manually curated harmful instructions
+
+  (Warning: this will involve materials that are offensive in nature)
+
+  ```bash
+  python test_manual_prompts_visual_llm.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --image_path  adversarial_images/prompt_unconstrained.bmp
+  ```
+
+  The argument `--image_path` can be customized to the path of an any input image.
+
+<br>
+
+### Generate Textual Adversarial Examples
+
+We also provide codes for optimizing adversarial text tokens w.r.t. the same attack targets of our visual attacks. A running example: 
+
+```bash
+python textual_attack.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --n_iters 5000 --n_candidates 50 --save_dir textual_unconstrained
+```
+
