@@ -36,7 +36,7 @@ Princeton University<br/>
 
 MiniGPT-4 can refuse harmful instructions with a non-trivial probability (see the green boxes). But we find that the aligned behaviors can falter significantly when prompted with a visual adversarial input (see the red boxes).
 
-In the above example, we optimize the adversarial example x' on a small, manually curated corpus comprised of derogatory content against a certain <gender-1>, an ethnic <race-1>, and the human race to directly maximize the model’s probability of generating such content.
+In the above example, we optimize the adversarial example x' on a small, manually curated corpus comprised of derogatory content against a certain \<gender-1\>, an ethnic \<race-1\>, and the human race to directly maximize the model’s probability of generating such content.
 
 Though the scope of the corpus is very narrow, **surprisingly**, a single such adversarial example can enable the model to heed a wide range of harmful instructions and **produce harmful content far beyond merely imitating the derogatory corpus (see the following examples) used in the optimization**.
 
