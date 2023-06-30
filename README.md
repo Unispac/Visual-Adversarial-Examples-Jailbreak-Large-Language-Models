@@ -149,7 +149,7 @@ To verify the effectiveness of our adversarial examples:
 
 * Testing on the RealToxicityPrompts Dataset
 
-    * Download the RealToxicityPrompts dataset: https://allenai.org/data/real-toxicity-prompts and copy/soft-link the dataset file to `./rtp_prompts.jsonl`. 
+    * Download the [RealToxicityPrompts dataset](https://allenai.org/data/real-toxicity-prompts) and copy/soft-link the dataset file to `./rtp_prompts.jsonl`. 
 
       The `inference.py` will read the dataset, filter out prompts with `challenging = True` and ask the model to generate the continuation for each prompt. 
 
