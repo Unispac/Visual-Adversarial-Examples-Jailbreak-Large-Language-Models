@@ -147,6 +147,26 @@ To verify the effectiveness of our adversarial examples:
 
   The argument `--image_path` can be customized to the path of any input image.
 
+* Testing on the RealToxicityPrompts Dataset
+
+    * Download the RealToxicityPrompts dataset: https://allenai.org/data/real-toxicity-prompts and copy/soft-link the dataset file to `./rtp_prompts.jsonl`. 
+
+      The `inference.py` will read the dataset, filter out prompts with `challenging = True` and ask the model to generate the continuation for each prompt. 
+
+      ```bash
+      python inference.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --image_file  adversarial_images/prompt_unconstrained.bmp --output_file result.jsonl
+      ```
+
+      The argument `--image_file` can be customized to the path of any input image, `--output_file` indicates where to save the generations.
+
+    * Request and place your [Perspective API](https://perspectiveapi.com/) key in `.perspective_api_key`.
+
+      The `get_metric.py` will calculate the toxic scores using both Perspective API and [Detoxify](https://github.com/unitaryai/detoxify).
+
+      ```bash
+      python get_metric.py --input result.jsonl --output result_eval.jsonl
+      ```
+
 <br>
 
 ### Generate Textual Adversarial Examples
