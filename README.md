@@ -69,7 +69,7 @@ Though the scope of the corpus is very narrow, **surprisingly**, a single such a
 <br>
 
 # Step-by-Step Instructions for Reimplementing Our Experiments
-
+> Note: a single A100 80G GPU is sufficient to launch the following experiments.
 <br>
 
 ### Installation
@@ -103,7 +103,6 @@ conda activate minigpt4
 
 ### Generate Visual Adversarial Examples
 
-> Note: a single A100 80G GPU is sufficient to launch the following experiments.
 
 Generate a visual adversarial example within a distortion constraint of epsilon = 16/255 (similar to the example in our overview demo). The final adversarial examples will be saved to `$save_dir/bad_prompt.bmp`, and we also save intermediate checkpoints every 100 iterations.
 
