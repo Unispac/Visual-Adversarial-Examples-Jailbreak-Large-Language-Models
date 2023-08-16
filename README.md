@@ -232,10 +232,6 @@ We also implement our attacks on two other open-sourced VLMs, including [Instruc
 
 * Set up the environment following the instructions of the original repository at: https://github.com/haotian-liu/LLaVA
 
-  * We diverged from LLaVA's original implementation a little bit. Here, we retain the LLaMA-2 LLM component in its frozen state, consistent with the practices of MiniGPT-4 and InstructBLIP. Except for this, we ensure all other implementation details remain congruent with the original LLaVA model implementation. 
-
-    To get above stated variant, please first refer to the instructions for training LLaVA in https://github.com/haotian-liu/LLaVA/blob/main/docs/LLaVA_from_LLaMA2.md. Basically, we start from LLaMA-2-13B-Chat checkpoint and we follow exactly the same training procedure except for that we keep the LLaMA-2 LLM backbone frozen.
-    
   * After get the model, save it to the path `./ckpts/llava_llama_2_13b_chat_freeze`
 
 * Attack
