@@ -266,3 +266,19 @@ We also implement our attacks on two other open-sourced VLMs, including [Instruc
   ```bash
   python cal_metrics.py --input result_eval.jsonl
   ```
+
+<br><br>
+
+## Citation
+If you find this useful in your research, please consider citing:
+
+```
+@misc{qi2023visual,
+      title={Visual Adversarial Examples Jailbreak Large Language Models}, 
+      author={Xiangyu Qi and Kaixuan Huang and Ashwinee Panda and Mengdi Wang and Prateek Mittal},
+      year={2023},
+      eprint={2306.13213},
+      archivePrefix={arXiv},
+      primaryClass={cs.CR}
+}
+```
