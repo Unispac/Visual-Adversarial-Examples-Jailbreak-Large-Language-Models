@@ -3,13 +3,13 @@
     <a href="https://unispac.github.io/" target="_blank" style="text-decoration: none;">Xiangyu Qi<sup>1,*</sup></a>&nbsp;,&nbsp;
     <a href="https://hackyhuang.github.io/" target="_blank" style="text-decoration: none;">Kaixuan Huang<sup>1,*</sup></a>&nbsp;,&nbsp;
     <a href="https://scholar.google.com/citations?user=rFC3l6YAAAAJ&hl=en" target="_blank" style="text-decoration: none;">Ashwinee Panda<sup>1</sup></a><br>
-  <a href="https://www.peterhenderson.co/" target="_blank" style="text-decoration: none;">Peter Henderson<sup>2</sup></a>&nbsp;,&nbsp;
     <a href="https://mwang.princeton.edu/" target="_blank" style="text-decoration: none;">Mengdi Wang<sup>1</sup></a>&nbsp;,&nbsp;
     <a href="https://www.princeton.edu/~pmittal/" target="_blank" style="text-decoration: none;">Prateek Mittal<sup>1</sup></a>&nbsp;&nbsp; 
     <br/> 
 <sup>*</sup>Equal Contribution<br>
-Princeton University<sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stanford University<sup>2</sup> <br/> 
+Princeton University<sup>1</sup><br/> 
 </p>
+
 
 
 <p align='center';>
