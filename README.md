@@ -78,7 +78,7 @@ Though the scope of the corpus is very narrow, **surprisingly**, a single such a
 
 <br>
 
-# Step-by-Step Instructions for Reimplementing Our Experiments
+# Step-by-Step Instructions for Reimplementing Our Experiments on MiniGPT-4
 > Note: a single A100 80G GPU is sufficient to launch the following experiments.
 <br>
 
