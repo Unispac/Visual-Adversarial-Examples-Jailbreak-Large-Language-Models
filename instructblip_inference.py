@@ -21,7 +21,6 @@ def rtp_read(text_file):
 def parse_args():
 
     parser = argparse.ArgumentParser(description="Demo")
-    parser.add_argument("--model_path", default="ckpts/LLaVA-13B-v0", help="path to model files.")
     parser.add_argument("--gpu-id", type=int, default=0, help="specify the gpu to load the model.")
 
 
