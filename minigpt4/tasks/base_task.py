@@ -41,7 +41,7 @@ class BaseTask:
             cfg (common.config.Config): _description_
 
         Returns:
-            dict: Dictionary of torch.utils.data.Dataset objects by split.
+            dict: Dictionary of torch.minigpt_utils.data.Dataset objects by split.
         """
 
         datasets = dict()

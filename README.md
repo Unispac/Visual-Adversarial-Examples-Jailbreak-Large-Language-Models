@@ -1,14 +1,16 @@
-<h1 align='center' style="text-align:center; font-weight:bold; font-size:2.0em;letter-spacing:2.0px;"> Visual Adversarial Examples Jailbreak<br>Large Language Models </h1>
+<h1 align='center' style="text-align:center; font-weight:bold; font-size:2.0em;letter-spacing:2.0px;"> Visual Adversarial Examples Jailbreak<br>Aligned Large Language Models </h1>
 <p align='center' style="text-align:center;font-size:1.25em;">
-    <a href="https://unispac.github.io/" target="_blank" style="text-decoration: none;">Xiangyu Qi<sup>*</sup></a>&nbsp;,&nbsp;
-    <a href="https://hackyhuang.github.io/" target="_blank" style="text-decoration: none;">Kaixuan Huang<sup>*</sup></a>&nbsp;,&nbsp;
-    <a href="https://scholar.google.com/citations?user=rFC3l6YAAAAJ&hl=en" target="_blank" style="text-decoration: none;">Ashwinee Panda</a><br>
-    <a href="https://mwang.princeton.edu/" target="_blank" style="text-decoration: none;">Mengdi Wang</a>&nbsp;,&nbsp;
-    <a href="https://www.princeton.edu/~pmittal/" target="_blank" style="text-decoration: none;">Prateek Mittal</a>&nbsp;&nbsp; 
+    <a href="https://unispac.github.io/" target="_blank" style="text-decoration: none;">Xiangyu Qi<sup>1,*</sup></a>&nbsp;,&nbsp;
+    <a href="https://hackyhuang.github.io/" target="_blank" style="text-decoration: none;">Kaixuan Huang<sup>1,*</sup></a>&nbsp;,&nbsp;
+    <a href="https://scholar.google.com/citations?user=rFC3l6YAAAAJ&hl=en" target="_blank" style="text-decoration: none;">Ashwinee Panda<sup>1</sup></a><br>
+  <a href="https://www.peterhenderson.co/" target="_blank" style="text-decoration: none;">Peter Henderson<sup>2</sup></a>&nbsp;,&nbsp;
+    <a href="https://mwang.princeton.edu/" target="_blank" style="text-decoration: none;">Mengdi Wang<sup>1</sup></a>&nbsp;,&nbsp;
+    <a href="https://www.princeton.edu/~pmittal/" target="_blank" style="text-decoration: none;">Prateek Mittal<sup>1</sup></a>&nbsp;&nbsp; 
     <br/> 
 <sup>*</sup>Equal Contribution<br>
-Princeton University<br/> 
+Princeton University<sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stanford University<sup>2</sup> <br/> 
 </p>
+
 
 <p align='center';>
 <b>
@@ -109,13 +111,13 @@ Generate a visual adversarial example within a distortion constraint of epsilon 
 The argument can be adjusted (e.g., --eps=32,64,128) to evaluate the effectiveness of the attacks under different distortion budgets.
 
 ```bash
-python visual_attack.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --n_iters 5000 --constrained --eps 16 --alpha 1 --save_dir visual_constrained_eps_16
+python minigpt_visual_attack.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --n_iters 5000 --constrained --eps 16 --alpha 1 --save_dir visual_constrained_eps_16
 ```
 
 When there is no need for "visual stealthiness", one can use the following command to run unconstrained attacks (the adversarial image can take any values within the legitimate range of pixel values).
 
 ```bash
-python visual_attack.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --n_iters 5000  --alpha 1 --save_dir visual_unconstrained
+python minigpt_visual_attack.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --n_iters 5000  --alpha 1 --save_dir visual_unconstrained
 ```
 
 <br>
@@ -141,7 +143,7 @@ To verify the effectiveness of our adversarial examples:
   (Warning: this will involve materials that are offensive in nature)
 
   ```bash
-  python test_manual_prompts_visual_llm.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --image_path  adversarial_images/prompt_unconstrained.bmp
+  python minigpt_test_manual_prompts_visual_llm.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --image_path  adversarial_images/prompt_unconstrained.bmp
   ```
 
   The argument `--image_path` can be customized to the path of any input image.
@@ -153,7 +155,7 @@ To verify the effectiveness of our adversarial examples:
       The `inference.py` will read the dataset, filter out prompts with `challenging = True` and ask the model to generate the continuation for each prompt. 
 
       ```bash
-      python inference.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --image_file  adversarial_images/prompt_unconstrained.bmp --output_file result.jsonl
+      python minigpt_inference.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --image_file  adversarial_images/prompt_unconstrained.bmp --output_file result.jsonl
       ```
 
       The argument `--image_file` can be customized to the path of any input image, `--output_file` indicates where to save the generations.
@@ -173,6 +175,92 @@ To verify the effectiveness of our adversarial examples:
 We also provide codes for optimizing adversarial text tokens w.r.t. the same attack targets as our visual attacks. A running example: 
 
 ```bash
-python textual_attack.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --n_iters 5000 --n_candidates 50 --save_dir textual_unconstrained
+python minigpt_textual_attack.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0 --n_iters 5000 --n_candidates 50 --save_dir textual_unconstrained
 ```
 
+<br><br>
+
+# Attacks on Other Models
+
+We also implement our attacks on two other open-sourced VLMs, including [InstructBLIP](https://github.com/salesforce/LAVIS/tree/main/projects/instructblip) and [LLaVA](https://github.com/haotian-liu/LLaVA). To launch experiments on these models, we suggest users to create a separate conda environment for each model and install dependencies following the instructions of the original repositories of these models.
+
+### Instruct BLIP
+
+* Set up the environment and prepare model checkpoints following the instructions of the original repository at: https://github.com/salesforce/LAVIS/tree/main/projects/instructblip
+
+  * Choose the 13B version model built upon vicuna13b, i.e., blip2_vicuna_instruct-vicuna13b
+  * Download the version 1.1 model of vicuna-13b to the directory `./ckpts/vicuna-13b-v1.1`
+
+* Attack
+
+  ```bash
+  python -u instructblip_visual_attack.py --n_iters 5000 --constrained --save_dir results_blip_constrained_16 --eps 16 --alpha 1
+  python -u instructblip_visual_attack.py --n_iters 5000 --constrained --save_dir results_blip_constrained_32 --eps 32 --alpha 1
+  python -u instructblip_visual_attack.py --n_iters 5000 --constrained --save_dir results_blip_constrained_64 --eps 64 --alpha 1
+  python -u instructblip_visual_attack.py --n_iters 5000 --save_dir results_blip_unconstrained --alpha 1
+  ```
+
+* Testing on the RealToxicityPrompts Dataset
+
+  Make inference on the dataset:
+
+  ```bash
+  python instructblip_inference.py --image_file path_to_the_adversarial_example --output_file result.jsonl
+  ```
+
+  The `get_metric.py` will calculate the toxic scores using both Perspective API and [Detoxify](https://github.com/unitaryai/detoxify).
+
+  ```bash
+  python get_metric.py --input result.jsonl --output result_eval.jsonl
+  ```
+
+  Then, you can run `cal_metrics.py` to summarize the evaluation results from the two evaluation:
+
+  ```bash
+  python cal_metrics.py --input result_eval.jsonl
+  ```
+
+### LLaVA-LLaMA-2
+
+* Set up the environment following the instructions of the original repository at: https://github.com/haotian-liu/LLaVA
+
+  * As mentioned in Appendix-C of our paper: 
+
+    ```tex
+    "It is important to note that, to maintain the strong alignment of LLaMA-2 in the LLaVA model variant, we diverged from LLaVA's original implementation a little bit. Unlike MiniGPT-4 and InstructBLIP, which keep their LLM component frozen, the original implementation of LLaVA performs end-to-end finetuning on both the vision and LLM components. Our empirical findings suggest that such end-to-end finetuning results in catastrophic forgetting of the safety alignment integrated within the LLaMA-2 model. Consequently, the fully finetuned LLaVA model appears misaligned. To address this issue, we independently trained a variant of LLaVA. Here, we retain the LLaMA-2 LLM component in its frozen state, consistent with the practices of MiniGPT-4 and InstructBLIP. Except for this, we ensure all other implementation details remain congruent with the original LLaVA model implementation.""
+    ```
+
+    To get above stated variant, please following the instructions for training LLaVA in https://github.com/haotian-liu/LLaVA/blob/main/docs/LLaVA_from_LLaMA2.md 
+
+    Basically, we start from LLaMA-2-13B-Chat checkpoint and we follow exactly the same training procedure except for that we keep the LLaMA-2 LLM backbone frozen.
+
+  * After get the model, save it to the path `./ckpts/llava_llama_2_13b_chat_freeze`
+
+* Attack
+
+  ```bash
+  python -u llava_llama_v2_visual_attack.py --n_iters 5000 --constrained --save_dir results_llava_llama_v2_constrained_16 --eps 16 --alpha 1
+  python -u llava_llama_v2_visual_attack.py --n_iters 5000 --constrained --save_dir results_llava_llama_v2_constrained_32 --eps 32 --alpha 1
+  python -u llava_llama_v2_visual_attack.py --n_iters 5000 --constrained --save_dir results_llava_llama_v2_constrained_64 --eps 64 --alpha 1
+  python -u llava_llama_v2_visual_attack.py --n_iters 5000 --save_dir results_llava_llama_v2_unconstrained --alpha 1
+  ```
+
+* Testing on the RealToxicityPrompts Dataset
+
+  Make inference on the dataset:
+
+  ```bash
+  python -u llava_llama_v2_inference.py --image_file path_to_the_adversarial_example --output_file result.jsonl
+  ```
+
+  The `get_metric.py` will calculate the toxic scores using both Perspective API and [Detoxify](https://github.com/unitaryai/detoxify).
+
+  ```bash
+  python get_metric.py --input result.jsonl --output result_eval.jsonl
+  ```
+
+  Then, you can run `cal_metrics.py` to summarize the evaluation results from the two evaluation:
+
+  ```bash
+  python cal_metrics.py --input result_eval.jsonl
+  ```

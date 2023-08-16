@@ -215,7 +215,7 @@ class RunnerBase:
                 if isinstance(self.datasets[split_name], tuple) or isinstance(
                     self.datasets[split_name], list
                 ):
-                    # mixed wds.DataPipeline and torch.utils.data.Dataset
+                    # mixed wds.DataPipeline and torch.minigpt_utils.data.Dataset
                     num_records = sum(
                         [
                             len(d)

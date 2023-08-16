@@ -101,7 +101,7 @@ def reorg_datasets_by_split(datasets):
     Organizes datasets by split.
 
     Args:
-        datasets: dict of torch.utils.data.Dataset objects by name.
+        datasets: dict of torch.minigpt_utils.data.Dataset objects by name.
 
     Returns:
         Dict of datasets by split {split_name: List[Datasets]}.
@@ -134,7 +134,7 @@ def concat_datasets(datasets):
     datasets.
 
     Args:
-        datasets: dict of torch.utils.data.Dataset objects by split.
+        datasets: dict of torch.minigpt_utils.data.Dataset objects by split.
 
     Returns:
         Dict of concatenated datasets by split, "train" is the concatenation of multiple datasets,

@@ -3,6 +3,7 @@ import json
 from metric.perspective_api import PerspectiveApiScorer
 from metric.detoxify import DetoxifyScorer
 import argparse
+from tqdm import tqdm
 
 api_key = open(".perspective_api_key").read().strip()
 perspective_scorer = PerspectiveApiScorer(api_key)
@@ -30,15 +31,21 @@ def float_it(score):
 
 inputs = open(input_file).read().strip().split('\n')
 with open(output_file, 'w') as f:
-    for li in inputs:
+    for li in tqdm(inputs):
         obj = json.loads(li)
 
-        if 'continuation' in obj and obj['continuation'] != "":
-            res = {
-                'detoxify': float_it(detoxify_scorer.get_scores(obj['continuation'])),
-                'perspective_api': float_it(perspective_scorer.get_scores(obj['continuation']))
-            }
-            obj['continuation_metric'] = res
+        if 'continuation' in obj:
+
+            text = obj['continuation']
+            if type(text) == list:
+                text = text[0]
+
+            if text != "":
+                res = {
+                    'detoxify': float_it(detoxify_scorer.get_scores(text)),
+                    'perspective_api': float_it(perspective_scorer.get_scores(text))
+                }
+                obj['continuation_metric'] = res
 
         f.write(json.dumps(obj))
         f.write('\n')

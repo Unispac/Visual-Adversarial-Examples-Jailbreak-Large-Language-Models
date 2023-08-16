@@ -165,7 +165,7 @@ class BaseDatasetBuilder:
 
     def build(self):
         """
-        Create by split datasets inheriting torch.utils.data.Datasets.
+        Create by split datasets inheriting torch.minigpt_utils.data.Datasets.
 
         # build() can be dataset-specific. Overwrite to customize.
         """
@@ -211,7 +211,7 @@ class BaseDatasetBuilder:
             vis_path = os.path.join(vis_info.storage, split)
 
             if not os.path.isabs(vis_path):
-                # vis_path = os.path.join(utils.get_cache_path(), vis_path)
+                # vis_path = os.path.join(minigpt_utils.get_cache_path(), vis_path)
                 vis_path = utils.get_cache_path(vis_path)
 
             if not os.path.exists(vis_path):
