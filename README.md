@@ -3,12 +3,14 @@
     <a href="https://unispac.github.io/" target="_blank" style="text-decoration: none;">Xiangyu Qi<sup>1,*</sup></a>&nbsp;,&nbsp;
     <a href="https://hackyhuang.github.io/" target="_blank" style="text-decoration: none;">Kaixuan Huang<sup>1,*</sup></a>&nbsp;,&nbsp;
     <a href="https://scholar.google.com/citations?user=rFC3l6YAAAAJ&hl=en" target="_blank" style="text-decoration: none;">Ashwinee Panda<sup>1</sup></a><br>
+  <a href="https://www.peterhenderson.co/" target="_blank" style="text-decoration: none;">Peter Henderson<sup>2</sup></a>&nbsp;,&nbsp;
     <a href="https://mwang.princeton.edu/" target="_blank" style="text-decoration: none;">Mengdi Wang<sup>1</sup></a>&nbsp;,&nbsp;
     <a href="https://www.princeton.edu/~pmittal/" target="_blank" style="text-decoration: none;">Prateek Mittal<sup>1</sup></a>&nbsp;&nbsp; 
     <br/> 
 <sup>*</sup>Equal Contribution<br>
-Princeton University<sup>1</sup><br/> 
+Princeton University<sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;Stanford University<sup>2</sup><br/> 
 </p>
+
 
 
 
@@ -270,8 +272,8 @@ If you find this useful in your research, please consider citing:
 
 ```
 @misc{qi2023visual,
-      title={Visual Adversarial Examples Jailbreak Large Language Models}, 
-      author={Xiangyu Qi and Kaixuan Huang and Ashwinee Panda and Mengdi Wang and Prateek Mittal},
+      title={Visual Adversarial Examples Jailbreak Aligned Large Language Models}, 
+      author={Xiangyu Qi and Kaixuan Huang and Ashwinee Panda and Peter Henderson and Mengdi Wang and Prateek Mittal},
       year={2023},
       eprint={2306.13213},
       archivePrefix={arXiv},
