@@ -16,7 +16,7 @@ Princeton University<sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;Stanford University<sup>
 
 <p align='center';>
 <b>
-<em>arXiv-Preprint, 2023</em> <br>
+<em>AAAI (Oral), 2024</em> <br>
 </b>
 </p>
 
